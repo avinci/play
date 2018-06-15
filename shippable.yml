@@ -37,4 +37,4 @@ jobs:
       - TASK:
           script:
             - printenv
-            - shipctl get_integration_resource foo_int
+            - shipctl get_integration_resource foo_int masterName
