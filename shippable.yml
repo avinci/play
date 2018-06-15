@@ -6,7 +6,7 @@ resources:
     type: gitRepo
     integration: demo_gh
     versionTemplate:
-      sourceName: avinci/box
+      sourceName: avinci/beta
 
 jobs:
   - name: test_wh
