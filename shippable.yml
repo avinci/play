@@ -1,0 +1,11 @@
+resources:
+  - name: some_state
+    type: state
+
+jobs:
+  - name: beta_runCI
+    type: runCI
+    steps:
+      - IN: box_runCI
+      - IN: some_state
+        switch: off
