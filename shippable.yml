@@ -2,7 +2,23 @@ resources:
   - name: some_state
     type: state
 
+  - name: in_repo
+    type: gitRepo
+    integration: demo_gh
+    versionTemplate:
+      sourceName: avinci/box
+
 jobs:
+  - name: test_wh
+    type: runSh
+    steps:
+      - IN: in_repo
+      - TASK:
+          script:
+            - ls
+      - OUT: beta_ciRepo
+        replicate: in_repo
+
   - name: beta_runCI
     type: runCI
     steps:
