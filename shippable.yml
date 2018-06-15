@@ -37,3 +37,4 @@ jobs:
       - TASK:
           script:
             - printenv
+            - get_integration_resource foo_int
