@@ -8,6 +8,10 @@ resources:
     versionTemplate:
       sourceName: avinci/beta
 
+  - name: foo_int
+    type: integration
+    integration: foo
+
 jobs:
   - name: test_wh
     type: runSh
@@ -25,3 +29,11 @@ jobs:
       - IN: box_runCI
       - IN: some_state
         switch: off
+
+  - name: test_key
+    type: runSh
+    steps:
+      - IN: foo_int
+      - TASK:
+          script:
+            - printenv
