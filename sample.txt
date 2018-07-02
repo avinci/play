@@ -1,3 +1,4 @@
  ${${AVI}:-default}
  ${$AVI:-default}
  ${${VAR}:-default}
+ ${AVI:-default}
