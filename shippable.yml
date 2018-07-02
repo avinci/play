@@ -68,5 +68,7 @@ jobs:
             - pushd $(shipctl get_resource_state "play_repo")
             - shipctl replace sample.txt
             - cat sample.txt
-            - shipctl put_resource_state "$JOB_NAME" FOO="bar with multiple words"
+            - FOO="bar with multiple words"
+            - echo $FOO
+            - shipctl put_resource_state "$JOB_NAME" FOO=$FOO
 
