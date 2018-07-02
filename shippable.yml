@@ -8,6 +8,12 @@ resources:
     versionTemplate:
       sourceName: avinci/beta
 
+  - name: play_repo
+    type: gitRepo
+    integration: demo_gh
+    versionTemplate:
+      sourceName: avinci/play
+
   - name: foo_int
     type: integration
     integration: foo
@@ -48,3 +54,18 @@ jobs:
                   INTKEYNAME=$(sanitize_shippable_string "$(to_uppercase "$2")")
                   eval echo "$""$UP"_INTEGRATION_"$INTKEYNAME"
                 fi
+
+  - name: test_rep
+    type: runSh
+    steps:
+      - IN: play_repo
+      - TASK:
+          runtime:
+            options:
+              env:
+                - AVI: "foo"
+          script:
+            - pushd $(shipctl get_resource_state "play_repo")
+            - shipctl replace sample.txt
+            - cat sample.txt
+
