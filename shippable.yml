@@ -69,6 +69,5 @@ jobs:
             - shipctl replace sample.txt
             - cat sample.txt
             - FOO="bar with multiple words"
-            - echo $FOO
-            - shipctl put_resource_state "$JOB_NAME" FOO=$FOO
-
+            - echo "FOO=$FOO" >> $JOB_STATE/$JOB_NAME.env
+            - ls -al $JOB_STATE
