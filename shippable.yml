@@ -71,3 +71,4 @@ jobs:
             - FOO="bar with multiple words"
             - echo "FOO=$FOO" >> $JOB_STATE/$JOB_NAME.env
             - ls -al $JOB_STATE
+            - shipctl put_resource_state_multi $JOB_NAME "A=this is awsome" "B=no no" "C=plainsimple"
