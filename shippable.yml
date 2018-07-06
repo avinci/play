@@ -50,7 +50,7 @@ jobs:
           runtime:
             options:
               env:
-                - image_res: "app_img"
+                - image_res: "temp_img"
           script:
             - *login_image_registry
             - echo $IMAGE_NAME
