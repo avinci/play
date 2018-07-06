@@ -10,7 +10,7 @@ login_image_registry_temp: &login_image_registry
       DH_USR_NAME=$(shipctl get_integration_resource_field "$image_res" "userName")
       DH_PASS=$(shipctl get_integration_resource_field "$image_res" "password")
       DH_URL=$(shipctl get_integration_resource_field "$image_res" "url")
-#      docker login -u $DH_USR_NAME -p $DH_PASS
+      docker login -u $DH_USR_NAME -p $DH_PASS
 
 resources:
   - name: some_state
