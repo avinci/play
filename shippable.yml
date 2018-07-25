@@ -103,8 +103,33 @@ jobs:
           script:
             - echo $JOB_TRIGGERED_BY_ID
             - echo $JOB_TRIGGERED_BY_NAME
-            - echo $BUILD_JOB_ID
-            - echo $RESOURCE_ID
+            - |
+                if [ $RESOURCE_ID -eq $JOB_TRIGGERED_BY_ID ]
+                then
+                  export WORKFLOW_TRIGGERED_BY_NAME=$JOB_TRIGGERED_BY_NAME
+                else
+                  export WORKFLOW_TRIGGERED_BY_NAME=$(shipctl get_resource_version_key "$JOB_TRIGGERED_BY_NAME" "WORKFLOW_TRIGGERED_BY_NAME")
+                fi
+            - echo $WORKFLOW_TRIGGERED_BY_NAME
+            - shipctl put_resource_state_multi $JOB_NAME "WORKFLOW_TRIGGERED_BY_NAME=$WORKFLOW_TRIGGERED_BY_NAME"
+
+  - name: test_rep_again
+    type: runSh
+    steps:
+      - IN: test_rep
+      - TASK:
+          script:
+            - echo $JOB_TRIGGERED_BY_ID
+            - echo $JOB_TRIGGERED_BY_NAME
+            - |
+                if [ $RESOURCE_ID -eq $JOB_TRIGGERED_BY_ID ]
+                then
+                  export WORKFLOW_TRIGGERED_BY_NAME=$JOB_TRIGGERED_BY_NAME
+                else
+                  export WORKFLOW_TRIGGERED_BY_NAME=$(shipctl get_resource_version_key "$JOB_TRIGGERED_BY_NAME" "WORKFLOW_TRIGGERED_BY_NAME")
+                fi
+            - echo $WORKFLOW_TRIGGERED_BY_NAME
+            - shipctl put_resource_state_multi $JOB_NAME "WORKFLOW_TRIGGERED_BY_NAME=$WORKFLOW_TRIGGERED_BY_NAME"
 
 #            - pushd $(shipctl get_resource_state "play_repo")
 #            - shipctl replace sample.txt
