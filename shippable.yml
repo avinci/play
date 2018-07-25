@@ -102,6 +102,7 @@ jobs:
                 - AVI: "foo"
           script:
             - echo $JOB_TRIGGERED_BY_ID
+            - echo $JOB_TRIGGERED_BY_NAME
 
 #            - pushd $(shipctl get_resource_state "play_repo")
 #            - shipctl replace sample.txt
