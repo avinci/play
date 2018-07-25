@@ -104,6 +104,7 @@ jobs:
             - echo $JOB_TRIGGERED_BY_ID
             - echo $JOB_TRIGGERED_BY_NAME
             - echo $BUILD_JOB_ID
+            - echo $RESOURCE_ID
 
 #            - pushd $(shipctl get_resource_state "play_repo")
 #            - shipctl replace sample.txt
