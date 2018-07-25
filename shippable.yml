@@ -101,10 +101,12 @@ jobs:
               env:
                 - AVI: "foo"
           script:
-            - pushd $(shipctl get_resource_state "play_repo")
-            - shipctl replace sample.txt
-            - cat sample.txt
-            - FOO="bar with multiple words"
-            - echo "FOO=$FOO" >> $JOB_STATE/$JOB_NAME.env
-            - ls -al $JOB_STATE
-            - shipctl put_resource_state_multi $JOB_NAME "A=this is awsome" "B=no no" "C=plainsimple"
+            - echo $JOB_TRIGGERED_BY_ID
+
+#            - pushd $(shipctl get_resource_state "play_repo")
+#            - shipctl replace sample.txt
+#            - cat sample.txt
+#            - FOO="bar with multiple words"
+#            - echo "FOO=$FOO" >> $JOB_STATE/$JOB_NAME.env
+#            - ls -al $JOB_STATE
+#            - shipctl put_resource_state_multi $JOB_NAME "A=this is awsome" "B=no no" "C=plainsimple"
